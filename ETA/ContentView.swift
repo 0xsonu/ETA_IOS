@@ -37,3 +37,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+// https://www.youtube.com/watch?v=Bu6fAlltatA&t=144s - 11:08
