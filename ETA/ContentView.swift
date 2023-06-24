@@ -39,4 +39,4 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-// https://www.youtube.com/watch?v=Bu6fAlltatA&t=144s - 11:08
+// https://www.youtube.com/watch?v=Bu6fAlltatA&t=144s - 45:47

@@ -17,10 +17,10 @@ struct TransectionRow: View {
                 .fill(Color.icon.opacity(0.3))
                 .frame(width: 44, height: 44)
                 .overlay{
-                    FontIcon.text(.awesome5Solid(code: .icons), fontsize: 24, color: Color.icon)
+                    FontIcon.text(.awesome5Solid(code: transection.icon), fontsize: 24, color: Color.icon)
                 }
             VStack(alignment: .leading, spacing: 6){
-                Text(transection.marchant)
+                Text(transection.merchant)
                     .font(.subheadline)
                     .bold()
                     .lineLimit(1)
@@ -33,7 +33,7 @@ struct TransectionRow: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            Text(transection.signedAmount, format: .currency(code: "INR"))
+            Text(transection.signedAmount * 85.6, format: .currency(code: "INR"))
                 .bold()
                 .foregroundColor(transection.type == TransectionType.credit.rawValue
                                  ? Color.text : .primary)

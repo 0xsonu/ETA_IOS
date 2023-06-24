@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ETAApp: App {
+    
+    @StateObject var transectionListVM = TransectionListViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(transectionListVM)
         }
     }
 }
