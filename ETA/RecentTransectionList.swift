@@ -18,7 +18,7 @@ struct RecentTransectionList: View {
                 Spacer()
                 
                 NavigationLink{
-                    
+                    TransectionList()
                 } label: {
                     HStack(spacing: 4){
                         Text("See All")

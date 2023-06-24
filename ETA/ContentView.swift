@@ -15,6 +15,8 @@ struct ContentView: View {
                     Text("Overview")
                         .font(.title2)
                         .bold()
+                    
+                    RecentTransectionList()
                 }
                 .padding()
             }
@@ -33,10 +35,16 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let transectionListVM : TransectionListViewModel = {
+        let transectionListVM = TransectionListViewModel()
+        transectionListVM.transections = transectionListPreviewdata
+        return transectionListVM
+    }()
     static var previews: some View {
         ContentView()
+            .environmentObject(transectionListVM)
     }
 }
 
 
-// https://www.youtube.com/watch?v=Bu6fAlltatA&t=144s - 45:47
+//  45:47

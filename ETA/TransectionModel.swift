@@ -56,6 +56,10 @@ struct Transection : Identifiable, Decodable, Hashable {
     var signedAmount : Double {
         return type == TransectionType.credit.rawValue ? amount : -amount
     }
+    
+    var month : String {
+        dateParsed.formatted(.dateTime.year().month(.wide))
+    }
 }
 
 enum TransectionType : String {

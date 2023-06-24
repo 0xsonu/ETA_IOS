@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
+typealias TransectionGroup = [String : [Transection]] 
+
 final class TransectionListViewModel : ObservableObject {
     @Published var transections : [Transection] = []
     
@@ -26,7 +28,6 @@ final class TransectionListViewModel : ObservableObject {
         URLSession.shared.dataTaskPublisher(for: url)
             .tryMap{(data, response) -> Data in
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                    dump(response)
                     throw URLError(.badServerResponse)
                     
                 }
@@ -45,5 +46,12 @@ final class TransectionListViewModel : ObservableObject {
                 self?.transections = result
             }.store(in: &cancellables)
         
+    }
+    
+    func groupTransectionByMonth() -> TransectionGroup {
+        guard !transections.isEmpty else { return [:]}
+        
+        let groupTransection = TransectionGroup(grouping: transections, by: {$0.month})
+        return groupTransection
     }
 }
