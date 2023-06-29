@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct ContentView: View {
+    @EnvironmentObject var transectionListVM : TransectionListViewModel
+//    var demoData : [Double] = [2,3,4,8,5,7,2,9,5,7]
     var body: some View {
         NavigationView{
             ScrollView{
@@ -15,6 +18,19 @@ struct ContentView: View {
                     Text("Overview")
                         .font(.title2)
                         .bold()
+                    
+                    let data = transectionListVM.accumulateTransections()
+                    let totalExpanse = data.last?.1 ?? 0
+                    
+                    CardView{
+                        VStack{
+                            ChartLabel(totalExpanse.formatted(.currency(code: "INR")))
+                            LineChart()
+                        }.background(Color.systemBackground)
+                    }
+                    .data(data)
+                    .chartStyle(ChartStyle(backgroundColor: Color.systemBackground, foregroundColor: ColorGradient(Color.icon.opacity(0.4), Color.icon)))
+                    .frame(height: 300)
                     
                     RecentTransectionList()
                 }
@@ -31,6 +47,7 @@ struct ContentView: View {
             }
         }
         .navigationViewStyle(.stack)
+        .accentColor(.primary)
     }
 }
 
@@ -41,7 +58,10 @@ struct ContentView_Previews: PreviewProvider {
         return transectionListVM
     }()
     static var previews: some View {
-        ContentView()
+        Group{
+            ContentView()
+            ContentView().preferredColorScheme(.dark)
+        }
             .environmentObject(transectionListVM)
     }
 }

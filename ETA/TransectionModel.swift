@@ -141,5 +141,5 @@ extension Category {
         .creditCardPayment
     ]
     
-    static let all : [Category ] = categories + subCategories
+    static let all : [Category] = categories + subCategories
 }
